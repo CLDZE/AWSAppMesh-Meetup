@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<div class="header-img"></div>
+<title>Jungle Mesh</title>
+<link rel="stylesheet" type="text/css" href="/style.css" media="screen"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
+<script type="text/javascript"> 
+var new_num = 40; // global variable
+
+
+jQuery(document).ready(function(){ 
+	
+	//http://api.jquery.com/css/
+	
+	var arr = Array.from(Array(104).keys())
+	//$('#container').hide();
+	$.each( arr, function( index, value ){
+    
+  	var number = this;
+
+    var div = $('<div class="smallDiv" />').appendTo('#container').hide()
+  	$.ajax({
+  	   
+        //url: "http://apigateway.stagingmesh.cloudzone.io",
+        url: "/api",
+        crossDomain: true,
+        dataType: "html",   //expect html to be 
+        async: true,
+        success: function(data){
+          div.css('background-color', data);
+        	div.fadeIn( "fast", function() {
+          // Animation complete
+    	 });
+        
+      }
+
+      });
+  })
+	
+});
+</script>
+</head>
+<body>
+
+	<h1>The Jungle Mesh</h1>
+
+	<div class="container" id="container"></div>
+
+</body>
+</html>
+
